@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Track{{titulo}}</title>
+</head>
+<body>
+	<section>
+		<ul><!--
+			Se coloca un ciclo foreach el cual recorre
+			todos los elementos que hay en la lista trac
+			tracks en el objeto del modelo y 
+			trac es el objeto creado en el context_processors
+
+			Se comparan los objetos y muestra todos los existentes
+			utilizando el objeto del modelo tracks puedo acceder
+			a todas las propiedades de las cuales son el titulo y
+			una funcion llamada get_absolute_url
+
+		 -->
+			{% for tracks in trac %}
+			<li>
+				<a href="{{tracks.get_absolute_url}}">{{tracks.title}}
+				</a>
+				{% if tracks.id == selected_track.id %} 
+					<strong><i> -- Te encuentras Aqui</i></strong>
+				{% endif %} 
+			</li>
+			{% endfor %}
+		</ul>
+		<!-- No funciona tan facil con render_to_templeate -->
+
+		<p>Title:{{track.title}}</p>
+		<p>Order:{{track.order}}</p>
+		<p>File:{{track.track_file}}</p>
+		<p>Album:{{track.albums}}</p>
+		<p>
+			Artist:{{track.artist}}
+			<br>
+			Byografy: {{track.artist.biography}}
+		</p>
+	</section>
+</body>
+</html>
